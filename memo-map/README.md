@@ -24,6 +24,13 @@ npm run build
 
 Location and microphone access only work over **HTTPS** or on `localhost`. A plain `http://192.168.x.x:5173` address won't get location or speech access on a phone. Use an HTTPS tunnel, for example `npx localtunnel --port 5173` or ngrok, or deploy the `dist/` build to any static host (Netlify, Vercel, GitHub Pages). On the phone, use "Add to Home Screen" to run it full-screen like an app.
 
+### Live version (GitHub Pages)
+
+`.github/workflows/deploy-memo-map.yml` builds and deploys the app to
+https://nevartu10-dotcom.github.io/Quiz-app/ on every push to the default branch that changes `memo-map/`.
+You can also start it by hand from the Actions tab. For this to work, the repository's
+**Settings → Pages → Build and deployment → Source** must be set to **GitHub Actions**.
+
 ## Known limitations
 
 - **Speech recognition support varies by browser.** It works in Chrome (Android/desktop), Edge and Safari (iOS 14.5+/macOS). Firefox doesn't support it, and there the mic button is hidden, so only typing is available. Chrome sends the audio to Google's servers to transcribe it.
