@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import InstallBanner from '../components/InstallBanner';
 import { distanceMeters, formatDate, formatDistance } from '../lib/geo';
 
 export default function ListPage({ memos, position, onShowOnMap, onEdit }) {
@@ -22,6 +23,7 @@ export default function ListPage({ memos, position, onShowOnMap, onEdit }) {
     <div className="flex h-full flex-col bg-slate-50">
       <header className="border-b border-slate-200 bg-white px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3">
         <h1 className="text-2xl font-bold text-slate-900">Memos</h1>
+        <InstallBanner />
         <input
           type="search"
           value={query}

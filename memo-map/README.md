@@ -11,6 +11,7 @@ A mobile-first web app for location-based memos. Memos are pinned to a place and
 - **Speech or typing:** the mic button in the editor uses the browser's Web Speech API to dictate into the text box. You can still type or correct the text afterwards.
 - **List page:** every memo, with search and sorting by *Recent* or *Nearby*, which uses distance from you. Tap **Show on map** to jump to a memo's pin.
 - Memos are saved in the browser's `localStorage`, so they survive reloads.
+- **Installable and offline (PWA):** a service worker caches the app and every map tile you view, so the app opens and shows your memos without a connection. The Memos page has an **Install** button on Android/desktop Chrome and Edge, and Add to Home Screen instructions on iPhone. Voice input still needs a connection.
 
 ## Run
 

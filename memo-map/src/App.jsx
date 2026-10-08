@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMemos } from './hooks/useMemos';
 import { useGeolocation } from './hooks/useGeolocation';
+import { useOnline } from './hooks/useOnline';
 import MapPage from './pages/MapPage';
 import ListPage from './pages/ListPage';
 import MemoEditor from './components/MemoEditor';
@@ -9,6 +10,7 @@ import TabBar from './components/TabBar';
 export default function App() {
   const { memos, addMemo, updateMemo, deleteMemo } = useMemos();
   const { position, error: geoError } = useGeolocation();
+  const online = useOnline();
   const [tab, setTab] = useState('map');
   const [focusedId, setFocusedId] = useState(null);
   const [mapView, setMapView] = useState(null);
@@ -54,6 +56,7 @@ export default function App() {
             memos={memos}
             position={position}
             geoError={geoError}
+            online={online}
             focusedId={focusedId}
             view={mapView}
             onViewChange={setMapView}
