@@ -92,7 +92,7 @@ function AddButton({ position, onAddAt }) {
   );
 }
 
-export default function MapPage({ memos, position, geoError, focusedId, view, onViewChange, onAddAt, onEdit }) {
+export default function MapPage({ memos, position, geoError, online, focusedId, view, onViewChange, onAddAt, onEdit }) {
   const markerRefs = useRef({});
   const focused = memos.find((m) => m.id === focusedId);
   const start = view ?? (position ? { center: position, zoom: 16 } : null);
@@ -109,6 +109,7 @@ export default function MapPage({ memos, position, geoError, focusedId, view, on
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           maxZoom={19}
+          crossOrigin=""
         />
         <MapEvents onLongPress={onAddAt} onMove={(center, zoom) => onViewChange({ center, zoom })} />
         <InitialCenter position={position} skip={Boolean(view || focused)} />
@@ -144,12 +145,17 @@ export default function MapPage({ memos, position, geoError, focusedId, view, on
         ))}
       </MapContainer>
 
-      {geoError && (
+      {!online && (
+        <div className="absolute top-4 right-18 left-4 z-[500] rounded-xl bg-slate-800/90 px-3 py-2 text-xs text-white shadow">
+          You're offline. Your memos still work; only map areas you've viewed before will show.
+        </div>
+      )}
+      {online && geoError && (
         <div className="absolute top-4 right-18 left-4 z-[500] rounded-xl bg-amber-50 px-3 py-2 text-xs text-amber-800 shadow">
           {geoError}
         </div>
       )}
-      {!geoError && memos.length === 0 && (
+      {online && !geoError && memos.length === 0 && (
         <div className="pointer-events-none absolute top-4 right-18 left-4 z-[500] rounded-xl bg-white/95 px-3 py-2 text-xs text-slate-600 shadow">
           Tap <b>+</b> to add a memo at your location, or long-press anywhere on the map.
         </div>

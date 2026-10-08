@@ -48,6 +48,8 @@ export function useSpeechRecognition({ onFinal }) {
     recognition.onerror = (event) => {
       if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
         setError('Microphone permission denied.');
+      } else if (event.error === 'network') {
+        setError('Voice input needs an internet connection. You can still type.');
       } else if (event.error !== 'no-speech' && event.error !== 'aborted') {
         setError(`Speech recognition error: ${event.error}`);
       }
