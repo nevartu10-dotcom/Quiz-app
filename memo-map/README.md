@@ -28,8 +28,7 @@ Location and microphone access only work over **HTTPS** or on `localhost`. A pla
 ### Live version (GitHub Pages)
 
 `.github/workflows/deploy-memo-map.yml` builds and deploys the app to
-https://nevartu10-dotcom.github.io/Quiz-app/ on every push to the default branch that changes `memo-map/`
-(it also builds [Area Painter](../area-painter/README.md) into `/area-painter/`).
+https://nevartu10-dotcom.github.io/Quiz-app/ on every push to the default branch that changes `memo-map/`.
 You can also start it by hand from the Actions tab. For this to work, the repository's
 **Settings → Pages → Build and deployment → Source** must be set to **GitHub Actions**.
 
