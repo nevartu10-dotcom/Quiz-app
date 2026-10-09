@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Area Painter has moved</title>
+    <script>
+      // Remove the old Area Painter service worker so this address stops serving the cached app.
+      navigator.serviceWorker?.getRegistrations().then((regs) =>
+        regs.filter((r) => r.scope.endsWith('/area-painter/')).forEach((r) => r.unregister()),
+      );
+      location.replace('https://nevartu10-dotcom.github.io/area-painter/');
+    </script>
+  </head>
+  <body style="font-family: system-ui, sans-serif; padding: 24px">
+    <p>
+      Area Painter has moved to
+      <a href="https://nevartu10-dotcom.github.io/area-painter/">nevartu10-dotcom.github.io/area-painter</a>.
+    </p>
+    <p>Your recordings come with it. If you installed the app, install it again from the new address.</p>
+  </body>
+</html>

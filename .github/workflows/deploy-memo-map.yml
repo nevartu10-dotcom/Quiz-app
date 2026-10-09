@@ -1,11 +1,10 @@
-name: Deploy Memo Map and Area Painter to GitHub Pages
+name: Deploy Memo Map to GitHub Pages
 
 on:
   push:
     branches: [claude/ui-concepts-feedback-app-CnZwS]
     paths:
       - 'memo-map/**'
-      - 'area-painter/**'
       - '.github/workflows/deploy-memo-map.yml'
   workflow_dispatch:
 
@@ -21,31 +20,20 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: memo-map
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: |
-            memo-map/package-lock.json
-            area-painter/package-lock.json
-      - name: Build Memo Map
-        working-directory: memo-map
-        run: |
-          npm ci
-          npm run lint
-          # Relative base so the app works under https://<user>.github.io/<repo>/
-          npx vite build --base=./
-      - name: Build Area Painter
-        working-directory: area-painter
-        run: |
-          npm ci
-          npm run lint
-          npm test
-          npx vite build --base=./
-      # Memo Map at the site root, Area Painter at /area-painter/
-      - run: cp -r area-painter/dist memo-map/dist/area-painter
+          cache-dependency-path: memo-map/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      # Relative base so the app works under https://<user>.github.io/<repo>/
+      - run: npx vite build --base=./
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

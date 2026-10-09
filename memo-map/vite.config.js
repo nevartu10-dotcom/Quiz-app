@@ -30,7 +30,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,webmanifest}'],
-        // Area Painter is deployed under /area-painter/ on the same site; let it load its own page.
+        // /area-painter/ only forwards to Area Painter's new address; don't cache it or serve Memo Map there.
+        globIgnores: ['area-painter/**'],
         navigateFallbackDenylist: [/\/area-painter\//],
         runtimeCaching: [
           {
