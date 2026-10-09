@@ -12,16 +12,16 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Memo Map',
-        short_name: 'Memo Map',
-        description: 'Location based memos on a map',
+        name: 'Area Painter',
+        short_name: 'Area Painter',
+        description: 'Paint the area you cover with a tool of a given width and measure it',
         // Relative so the app works under any path, e.g. GitHub Pages' /<repo>/
         start_url: './',
         scope: './',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#f8fafc',
-        theme_color: '#4f46e5',
+        theme_color: '#059669',
         icons: [
           { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
           { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' },
@@ -30,8 +30,6 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,webmanifest}'],
-        // Area Painter is deployed under /area-painter/ on the same site; let it load its own page.
-        navigateFallbackDenylist: [/\/area-painter\//],
         runtimeCaching: [
           {
             // Keep map tiles you have viewed so the map still shows them offline.
